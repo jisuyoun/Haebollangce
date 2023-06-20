@@ -54,8 +54,8 @@
 		background-color: white;
 		padding: 15px;
 		border: none;
-		margin-left: 97%;
-		margin-top: -9%;
+		margin-left: -10px;
+		margin-top: 254px;
 		position: absolute;
 	}
 	/* 이미지 끝 */
@@ -213,8 +213,11 @@
     	z-index: 99;
     }
     
+    td.td_height {
+    	height: 40px;
+    }
+    
     td#identify_td {
-    	height: 68px;
     	font-size: 15pt;
     	width: 40%;
     }
@@ -454,12 +457,30 @@
 				b_flag_showidfDuplicate_click = false;
 				b_flag_hp2_click = false;
 			}
+			else if ($(this).val() == "${requestScope.hp1}") {
+				
+				$("button#plz_identify").prop("disabled", true);
+				
+				$("button#edit_button").prop("disabled", true);
+				$("button#edit_button").removeClass("sucess_button_change");
+				
+				$("div#mobile_nochange_error").show();
+				
+				b_flag_showidfDuplicate_click = false;
+				b_flag_hp2_click = false;
+				
+			}
 			else {
 				// 국번이 정규표현식에 맞는 경우
 				$("button#plz_identify").prop("disabled", false);
 				
 				b_flag_showidfDuplicate_click = true;
 				b_flag_hp2_click = true;
+				
+				$("button#plz_identify").prop("disabled", false);
+				
+				$("button#edit_button").prop("disabled", false);
+				$("button#edit_button").addClass("sucess_button_change");
 				
 				$("input#mobile").val("010"+$("input#hp2").val()+$("input#hp3").val());
 			
@@ -500,13 +521,31 @@
 				b_flag_showidfDuplicate_click = false;
 				b_flag_hp3_click = false;
 			}
-			
+			else if ($(this).val() == "${requestScope.hp2}") {
+				
+				$("button#plz_identify").prop("disabled", true);
+				
+				$("button#edit_button").prop("disabled", true);
+				$("button#edit_button").removeClass("sucess_button_change");
+				
+				$("div#mobile_nochange_error").show();
+				
+				b_flag_showidfDuplicate_click = false;
+				b_flag_hp2_click = false;
+				
+			}
 			else {
 				// 마지막4자리번호가 정규표현식에 맞는 경우
 				$("button#plz_identify").prop("disabled", false);
 				
 				b_flag_showidfDuplicate_click = true;
 				b_flag_hp3_click = true;
+				
+				$("button#plz_identify").prop("disabled", false);
+				
+				$("button#edit_button").prop("disabled", false);
+				$("button#edit_button").addClass("sucess_button_change");
+				
 				
 				$("input#mobile").val("010"+$("input#hp2").val()+$("input#hp3").val());
 			
@@ -525,7 +564,9 @@
 			const bool = regExp.test($(this).val());
 			
         	// 인증 후 다시 이메일을 바꿀 경우 시작
-			b_flag_emailDuplicate_click = false;
+			b_flag_emailDuplicate_click 
+        
+			$("table#email_identify_table").hide();
 			
 			$("button#edit_button").prop("disabled", true);
 			$("button#edit_button").removeClass("sucess_button_change");
@@ -567,8 +608,6 @@
 				$("button#email_button").prop("disabled", false);
 				
 				$("button#email_button").addClass("sucess_button_change");
-				
-				
 				
 			}
 		});
@@ -907,7 +946,7 @@
 			// 타이머 끝
 		}	
 		// 인증번호 보내기 메소드
-		/*
+		
 		$.ajax({
 			url:"/mypage/sms_ajax",
 			type:"post",
@@ -924,7 +963,7 @@
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
 	        }
 		});
-		*/ 
+		
 		
 		<%-- 입력한 인증번호가 맞는지 아닌지 확인하기 시작 --%>
 		$("button#button_identify").click(function(){
@@ -1046,17 +1085,7 @@
 		
 	}
 	<%-- 정보수정하기 끝 --%>
-	/*
-	function image() {
-		
-		const frm = document.editFrm;
-  	     
-   	    frm.action = '/mypage/mypageHome';
-   	    frm.method = 'POST';
-   	    frm.submit();
-		
-	}
-	*/
+	
 </script>
 
 	<div id="mainPosition">
@@ -1104,7 +1133,7 @@
 			<form name="editFrm" id="editFrm" class="offset-lg-2 col-lg-6" method="post" enctype="multipart/form-data" style="max-width:100%;">
 				<input type="file" id="profile_pic_file" name="profile_pic_file" accept=".gif, .jpg, .png" onchange="img_change(this);" style="display:none;" />
 				<input type="hidden" name="profilePic" id="profilePic" value="${requestScope.udto.profilePic}" />
-			    <input type="hidden" name="test" id="test" />
+			   <!--  <input type="hidden" name="test" id="test" /> -->
 			    
 			    <input type="hidden" name="userid" id="userid" value="${requestScope.udto.userid}" />
 			    
@@ -1141,7 +1170,7 @@
 			                <input type="hidden" id="mobile" name="mobile" value="010${requestScope.hp1}${requestScope.hp2}" />
 			                
 			                <div id="mobile_error" class="error">휴대폰 형식이 아닙니다.</div>
-			                <div id="mobile_nochange_error" class="error">동일한 휴대폰 번호를 적었습니다.</div>
+			                <div id="mobile_nochange_error" class="error">동일한 휴대폰 번호를 입력하였습니다.</div>
 			            </td>
 			         </tr>
 			         
@@ -1154,7 +1183,7 @@
 			                <div id="email_fail" class="error_email">중복된 이메일입니다.</div>
 			                <div id="email_error" class="error_email">이메일 형식에 맞지 않습니다.</div>
 			                <div id="email_check_error" class="error_email">이메일 중복 확인을 해주세요.</div>
-			                <div id="email_nochange_error" class="error_email">동일한 이메일을 작성하였습니다.</div>
+			                <div id="email_nochange_error" class="error_email">동일한 이메일을 입력하였습니다.</div>
 			            </td>
 			         </tr>
 			         
@@ -1183,15 +1212,15 @@
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    <table>
+	    <table style="margin-top: 5%;">
 	    	<tr>
-	         	<td class="identify_table_style">
+	         	<td class="identify_table_style td_height">
 		        	<button type="button" id="plz_identify" onclick="show_identify();">인증번호요청하기</button>
 		        </td>
-		        <td id="identify_td">
+		        <td id="identify_td" class="td_height">
 	                <input type="text" id="input_identify" class="mobile_identify" style="margin-right:7%;" />
 	            </td>
-	            <td class="text_align_right identify_table_style">
+	            <td class="text_align_right identify_table_style td_height">
 	                <button type="button" id="button_identify" class="mobile_identify">인증하기</button>
 	            </td>
 	        </tr>
