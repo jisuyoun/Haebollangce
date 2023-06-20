@@ -84,8 +84,9 @@
 		width: 30%;
 	}
 	
-	td.td_width_33 {
-		width: 33%;
+	td.td_width_20 {
+		width: 20%;
+		text-align: center;
 	}
 	
 	td.no_identify {
@@ -111,10 +112,6 @@
 		width: 80%;
 	}
 	
-	td.td_width_33 {
-		width: 33%;
-	}
-	
 	img.cha_img {
 		border-radius: 20%;
 	}
@@ -132,11 +129,6 @@
 	
 	div.height_px_ide {
 		height: 507px;
-		overflow: auto;
-	}
-	
-	div.height_px {
-		height: 534px;
 		overflow: auto;
 	}
 	
@@ -356,25 +348,15 @@
 				 	 + "</div>";
 			
 				$("div#info_position").html(html);	
-			/* 
-				html = json[i].user_all_deposit + " 원";
-				
-				$("div#deposit_position").html(html);
-				
-				html = json[i].user_all_reward + " 원";
-				
-				$("div#reward_position").html(html);
-				 */
-			
-				 
-					 
+			 
 			},
 			error: function(request, status, error){
 				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
 	        }
 		});
 		<%-- 사용자 충전도 알아오기 끝 --%>
-		
+		 
+		<%-- 프로필 사진 불러오기 시작 --%>
 		$.ajax({
 			url: "/mypage/image",
 			type: "post",
@@ -395,15 +377,15 @@
             	alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
             }
 		});
-		
+		<%-- 프로필 사진 불러오기 끝 --%>
 		
 		<%-- 100% 인증한 챌린지들 가지고 오기 시작 --%>
 		$.ajax ({
 			url : "/mypage/finish_100_ajax",
-            type : "get",
+            type : "get",                                  
             data: {
             	"userid":"${requestScope.udto.userid}"
-            },
+            },                                   
             dataType:"json",
             success:function(json){
               
@@ -441,6 +423,8 @@
                 
 				let html = "";
 				
+				let cnt = 0;
+				
 				if(json.length > 0) {
 				 
             	   for(var i=0; i<json.length; i++) {
@@ -454,27 +438,33 @@
 									|| (freq == 102) && (dayLabel == 0 || dayLabel == 6) )  {
 								
 									html += "<tr>"
-		               		        	 +  "	<td class='td_width_33'>"
+		               		        	 +  "	<td class='td_width_30'>"
 		               		        	 +  "		<img class='img-fluid px-3 px-sm-4 mt-3 mb-4 cha_img'  src='<%=ctxPath%>/images/" + json[i].thumbnail + "' alt='챌린지이미지'>"
 		               		        	 +  "	</td>"
-		               		        	 +  "	<td>"
+		               		        	 +  "	<td class='td_width_50'>"
 		               		        	 +	"		<div class='div_info div_title'>" + json[i].challenge_name + " 챌린지</div>"
 		               		        	 +	"		<div class='div_info'>챌린지시작일자: " + json[i].startdate + "</div>"
 		               		        	 +	"		<div class='div_info'>인증빈도: " + json[i].frequency + "</div>"
 		               		        	 +	"		<div class='div_info'>인증시간: " + json[i].hour_start + " ~ " + json[i].hour_end + "</div>"
 		               		        	 +	"	</td>"
-		               		        	 +  "	<td><button type='button' class='go_detail' onclick='go_certify();'>인증하러가기</button></td>"
+		               		        	 +  "	<td class='td_width_20'>"
+		               		        	 +	"		<button type='button' class='go_detail' onclick='go_certify(" + json[i].fk_challenge_code + ");'>인증하러가기</button>"
+		               		        	 +  "	</td>"
 		               		        	 +  "</tr>";
-								  	 
+							}
+							else {
+								cnt++;
 							}
 		            		
                		        
             		   } // end of if(resultToday < json[i].finish_day) -----
-            		   else {
-							// json 은 있으나, 요일, 시간 등등이 안 맞을 경우
-							html = "<tr><td class='no_identify'>인증이 필요한 챌린지가 없습니다.</td></tr>";
-		                }
-            		    
+            		   
+            		   if(json.length == cnt) {
+            			   
+            			   html = "<tr><td class='no_identify'>인증이 필요한 챌린지가 없습니다.</td></tr>";
+            			   
+            		   }
+            		   
             	   } // end of for(var i=0; i<json.length; i++) -----
             	   
             	   $("table#show_identify").html(html);
@@ -505,7 +495,7 @@
 			dataType:"json",
 			success:function(json){
 				// 사용자가 관심태그로 설정한 카테고리로 있는 챌린지들 추천
-				console.log(JSON.stringify(json));
+				// console.log(JSON.stringify(json));
 				
 				let html = "";
 				
@@ -523,16 +513,16 @@
 							}
 							
 							html += "<tr>"
-								 +	"	<td class='td_width_33'>"
+								 +	"	<td class='td_width_30'>"
 								 +  "		<img class='img-fluid px-3 px-sm-4 mt-3 mb-4 cha_img' src='<%=ctxPath%>/images/" + json[i].thumbnail + "' alt='챌린지이미지'>"
 								 +	"	</td>"
-								 +	"	<td>"
+								 +	"	<td class='td_width_50'>"
 								 +	"		<div class='div_info div_title'>" + json[i].challenge_name + " 챌린지</div>"
 								 +	"		<div class='div_info'>챌린지 시작일자 : " + json[i].startdate + "</div>"
 								 +	"		<div class='div_info'>개설자 :" + json[i].fk_userid +"</div>"
 								 +	"	</td>"
-								 +	"	<td>"
-								 +	"		<button type='button' class='go_detail' onclick='go_detail();'>상세보기</button>"
+								 +	"	<td class='td_width_20'>"
+								 +	"		<button type='button' class='go_detail' onclick='go_detail(" + json[i].challenge_code + ");'>상세보기</button>"
 								 +  "	</td>"
 								 + 	"</tr>";
 								
@@ -550,7 +540,9 @@
 								 + "	<td class='td_middle'>개인정보 수정으로 관심태그를 추가하거나 직접 개설해보세요.</td>"
 								 + "</tr>"
 								 + "<tr>"
-								 + "	<td class='td_bottom'><button type='button' class='go_detail' onclick='go_create();'>개설하러가기</button></td>"
+								 + "	<td class='td_bottom'>"
+								 + "		<button type='button' class='go_detail' onclick='go_create(" + json[i].fk_challenge_code + ");'>개설하러가기</button>"
+								 + "	</td>"
 								 + "</tr>";
 						}
 						
@@ -715,15 +707,15 @@
 		
 	}); // end of document.ready -----
 	
-	function go_certify() {
+	function go_certify(e) {
 		
-		location.href = "/challenge/certify"
+		location.href = "/challenge/certify?challenge_code=" + e;
 		
 	} // end of function go_certify() {} -----
 	
-	function go_detail() {
+	function go_detail(e) {
 		
-		location.href = "/challenge/certify"
+		location.href = "/challenge/challengeView?challengeCode=" + e;
 		
 	} // end of function go_detail() {} -----
 	
@@ -789,7 +781,7 @@
 								<div id="reward_position" class="h5 mb-0 font-weight-bold text-gray-800">${requestScope.rdto.allReward}</div>
 							</div>
 							<div class="col-auto">
-								<button type="button" id="go_reward" onClick="location.href='<%=ctxPath%>/mypage/change_reward'">
+								<button type="button" id="go_reward" onClick="location.href='<%=ctxPath%>/mypage/changeReward'">
 									<i class="fas fa-coins" style="color: #fff700; margin-right: 7%;"></i>
 									상금전환
 								</button>
@@ -841,8 +833,8 @@
 					</div>
 				</div>
 				
-				<div class="col-lg-6 mb-4 height_px">
-					<div id="notice" class="card shadow mb-4">
+				<div class="col-lg-6 mb-4">
+					<div id="notice" class="card shadow mb-4 height_px_ide">
 						<div class="card-header py-3">
 							<h5 class="m-0 font-weight-bold">새로운 챌린지 추천</h5>
  						</div>
