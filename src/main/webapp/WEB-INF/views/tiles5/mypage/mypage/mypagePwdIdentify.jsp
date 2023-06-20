@@ -106,18 +106,6 @@
 	
 	/* 패스워드 확인 메소드 시작 */
 	function go_identify() {
-		/* 
-		const passwd = $("input#input_pwd").val();
-		
-		if(passwd == $("input#pwd").val()) {
-			const frm = document.pwd_identify_form;
-			
-			frm.action = '/mypage/mypageInfoEdit';
-		    frm.method = 'POST';
-		    frm.submit();
-		}
-		 */
-		
 		 
 		$.ajax ({
 			url : "/mypage/pw_identify_ajax",
@@ -128,7 +116,7 @@
             },
             success:function(result){
               
-            	console.log(JSON.stringify(result));
+            	// console.log(JSON.stringify(result));
             	
             	// 비번 확인하기
             	if(result == "success") {
@@ -156,7 +144,7 @@
 </script>
 
 	<div id="mainPosition">
-		<!-- 새로운 챌린지 추천 시작 -->
+		<!-- 비밀번호 입력 시작 -->
 		<form name="pwd_identify_form" style="background-color:white; padding: 273px 0;">
 			<div class="row">
 				<div class="col-lg-12 mb-8">
@@ -174,7 +162,7 @@
 				</div>
 			</div>
 		</form>
-		<!-- 새로운 챌린지 추천 끝 -->		
+		<!-- 비밀번호 입력 끝 -->		
 	</div>
 	<!-- 메인 끝 -->
 
