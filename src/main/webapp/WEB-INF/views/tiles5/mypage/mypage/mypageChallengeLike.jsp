@@ -112,7 +112,7 @@
 						if(resultToday <= json[i].startdate) {
 						
 							html += "<div class='card h-100 card_body'>"
-								 +  "	<img class='card-img-top' src='" + json[i].thumbnail + "' alt='...' />"
+								 +  "	<img class='card-img-top' src='<%=ctxPath%>/images/" + json[i].thumbnail + "' alt='...' />"
 								 +  "	<div class='card-body py-4'>"
 								 +  "		<div class='text-center'>"
 								 +  "			<h5 class='fw-bolder'>" + json[i].challenge_name + "</h5>"
@@ -120,7 +120,9 @@
 								 +  "		</div>"
 								 +  "	</div>"
 								 +  "	<div class='card-footer p-2 pt-0 border-top-0 bg-transparent'>"
-								 +  "		<div class='text-center'><a class='btn btn-outline-dark mt-auto' href='#'>상세보기</a></div>"
+								 +  "		<div class='text-center'>"
+								 +	"			<a class='btn btn-outline-dark mt-auto' onclick='go_cha_detail("+json[i].challenge_code+")'>상세보기</a>"
+								 +	"		</div>"
 								 +  "	</div>"
 								 +  "</div>";
 								 
@@ -155,6 +157,12 @@
 		
 	}); // end of $(document).ready(function(){} --------
 
+			
+	function go_cha_detail(e) {
+		
+		location.href = "/challenge/challengeView?challengeCode="+e;
+		
+	}		
 			
 	function go_challenge() {
 		
