@@ -36,42 +36,6 @@ public class MypageService implements InterMypageService {
 		return n;
 	}
 	
-	// 사용자가 보유하고 있는 예치금 알아오기
-	/*
-	@Override
-	public JsonObject user_deposit(String userid) {
-		
-		// 유저가 보유하고 있는 예치금
-		int user_deposit = dao.user_deposit(userid);
-		
-		// 유저가 챌린지에 사용한 모든 예치금
-		int user_challenge_deposit = dao.user_challenge_deposit(userid);
-		
-		// 유저가 현재 보유하고 있는 총 예치금
-		int user_all_deposit = user_deposit - user_challenge_deposit;
-		
-		// 유저가 보유한 상금
-		int user_reward = dao.user_reward(userid);
-		
-		// 유저가 전환한 상금
-		int user_convert = dao.user_convert(userid);
-		
-		// 유저가 현재 보유하고 있는 총 상금
-		int user_all_reward = user_reward - user_convert;
-		
-		JsonObject jsonObj = new JsonObject();
-		jsonObj.addProperty("user_deposit", user_deposit);
-		jsonObj.addProperty("user_challenge_deposit", user_challenge_deposit);
-		jsonObj.addProperty("user_all_deposit", user_all_deposit);
-		
-		jsonObj.addProperty("user_reward", user_reward);
-		jsonObj.addProperty("user_convert", user_convert);
-		jsonObj.addProperty("user_all_reward", user_all_reward);
-		
-		return jsonObj;
-	}
-*/
-	
 	// 상금 전환 테이블에 전환된 내용 넣기
 	@Override
 	public int reward_convert(Map<String, String> paraMap) {
@@ -288,19 +252,10 @@ public class MypageService implements InterMypageService {
 		
 		search_list = dao.deposit_data(paraMap);  // 예치금 테이블에서 예치금 충전, 취소내역 알아오기
 		
-		// 유저가 보유하고 있는 예치금
-		int user_deposit = dao.user_deposit(paraMap);
-				
-		// 유저가 챌린지에 사용한 모든 예치금
-		int user_challenge_deposit = dao.user_challenge_deposit(userid);
-		
 		// 유저가 현재 보유하고 있는 총 예치금
-		int user_all_deposit = user_deposit - user_challenge_deposit;
-		
+		int user_all_deposit = dao.user_deposit(paraMap);
 		
 		//DepositDTO depo_dto = dao.depo_dto(paraMap);
-		
-		
 		
 		JsonArray jsonArr = new JsonArray();
 		
@@ -411,6 +366,7 @@ public class MypageService implements InterMypageService {
 		
 		// System.out.println("제거 전 : " + all_interest_list.toString());
 		
+		// 전체 카테고리에서 관심태그로 등록된 카테고리들은 제외하기
 		for (int i = all_interest_list.size() - 1; i >= 0; i--) {
 		    Map<String, String> map_all = all_interest_list.get(i);
 		    String all_category_code = map_all.get("category_code");
@@ -552,77 +508,7 @@ public class MypageService implements InterMypageService {
 		
 		return new Gson().toJson(jsonArr);
 	}
-	
-	// 찜한 라운지 불러오기
-	@Override
-	public String like_lounge(String userid) {
-		
-		List<Map<String, Object>>  like_lounge_list = dao.select_like_lounge(userid);
-		
-		JsonArray jsonArr = new JsonArray();
-		
-		for (Map<String, Object> item : like_lounge_list) {
-		    int fk_seq = (int) item.get("fk_seq");
-		    
-		    Map<String, Object> paramMap = new HashMap<>();
-		    paramMap.put("fk_seq", fk_seq);
-		    
-		    List<Map<String, Object>> result = dao.selectList(paramMap);
-		    
-		    
-		    if(result != null && result.size() > 0) {
-				
-				for(Map<String, Object> map : result) {
-					
-					JsonObject jsonObj = new JsonObject();
-					
-					jsonObj.addProperty("seq", (String) map.get("seq"));
-					jsonObj.addProperty("name", (String) map.get("name"));
-					jsonObj.addProperty("subject", (String) map.get("subject"));
-					jsonObj.addProperty("content", (String) map.get("content"));
-					jsonObj.addProperty("likeCount", (String) map.get("likeCount"));
-					jsonObj.addProperty("commentCount", (String) map.get("commentCount"));
-					jsonObj.addProperty("readCount", (String) map.get("readCount"));
-					jsonObj.addProperty("filename", (String) map.get("filename"));
-					jsonObj.addProperty("thumbnail", (String) map.get("thumbnail"));
-					
-					jsonArr.add(jsonObj);
-				}
-				
-			}
-		}
-		
-		
-		/*
-		List<Map<String, Object>>  like_lounge_list = dao.select_like_lounge(userid);
-		
-		JsonArray jsonArr = new JsonArray();
-		
-		if(like_lounge_list != null && like_lounge_list.size() > 0) {
-			
-			for(Map<String, Object> map : like_lounge_list) {
-				
-				JsonObject jsonObj = new JsonObject();
-				
-				jsonObj.addProperty("seq", (String) map.get("seq"));
-				jsonObj.addProperty("name", (String) map.get("name"));
-				jsonObj.addProperty("subject", (String) map.get("subject"));
-				jsonObj.addProperty("content", (String) map.get("content"));
-				jsonObj.addProperty("likeCount", (String) map.get("likeCount"));
-				jsonObj.addProperty("commentCount", (String) map.get("commentCount"));
-				jsonObj.addProperty("readCount", (String) map.get("readCount"));
-				jsonObj.addProperty("profile_pic", (String) map.get("profile_pic"));
-				jsonObj.addProperty("thumbnail", (String) map.get("thumbnail"));
-				
-				jsonArr.add(jsonObj);
-			}
-			
-		}
-		*/
-		return new Gson().toJson(jsonArr);
-	}
 
-	
 	// 진행중인 챌린지 페이지 정보 가지고오기
 	@Override
 	public String mypage_challenging(Map<String, String> paraMap) {
@@ -664,10 +550,38 @@ public class MypageService implements InterMypageService {
 	@Override
 	public String recommend(String userid) {
 		
+		// 관심태그에 맞는 챌린지들 알아오기
 		List<Map<String, String>> recommend_list = dao.recommend(userid);
 		
+		Map<String, String> paraMap = new HashMap<>();
+		paraMap.put("userid", userid);
+		paraMap.put("fk_category_code", "0");
+		
+		// 진행중인 챌린지 알아오기
+		List<Map<String, String>> mypage_challenging_list = dao.mypage_challenging(paraMap); 
+					
 		JsonArray jsonArr = new JsonArray();
 		
+		if (mypage_challenging_list.size() > 0 && recommend_list.size() > 0) {
+		    List<Map<String, String>> removeList = new ArrayList<>();
+		    
+		    for (int i = 0; i < recommend_list.size(); i++) {
+		    	Map<String, String> map_re = recommend_list.get(i);
+		        String re_challenge_code = map_re.get("challenge_code");
+
+		        for (Map<String, String> map_cha : mypage_challenging_list) {
+		            String cha_challenge_code = map_cha.get("fk_challenge_code");
+
+		            if (re_challenge_code.equals(cha_challenge_code)) {
+		                removeList.add(map_re);
+		                break;
+		            }
+		        }
+		    }
+
+		    recommend_list.removeAll(removeList);
+		    
+		}
 		
 		if(recommend_list != null && recommend_list.size() > 0) {
 			for(Map<String,String> map : recommend_list) {
@@ -676,6 +590,7 @@ public class MypageService implements InterMypageService {
 				
 				jsonObj.addProperty("thumbnail", map.get("thumbnail"));
 				jsonObj.addProperty("challenge_name", map.get("challenge_name"));
+				jsonObj.addProperty("challenge_code", map.get("challenge_code"));
 				jsonObj.addProperty("regDate", map.get("regDate"));
 				jsonObj.addProperty("startdate", map.get("startdate"));
 				jsonObj.addProperty("member_count", map.get("member_count"));
@@ -728,50 +643,7 @@ public class MypageService implements InterMypageService {
 		
 		jsonObj.addProperty("exp", exp);
 		
-		/*
-		JsonArray jsonArr = new JsonArray();
 		
-		JsonObject jsonObj = new JsonObject();
-		
-		if(information_list != null && information_list.size() > 0) {
-			
-			for(Map<String, String> map:information_list) {
-				
-				jsonObj.addProperty("userid", (String) map.get("userid"));
-				jsonObj.addProperty("name", (String) map.get("name"));
-				jsonObj.addProperty("exp", (String) map.get("exp"));
-				jsonObj.addProperty("profile_pic", (String) map.get("profile_pic"));
-				
-			}
-			
-		}
-		*/
-		/*
-		// 유저가 보유하고 있는 예치금
-		int user_deposit = dao.user_deposit(userid);
-		
-		// 유저가 챌린지에 사용한 모든 예치금
-		int user_challenge_deposit = dao.user_challenge_deposit(userid);
-		
-		// 유저가 현재 보유하고 있는 총 예치금
-		int user_all_deposit = user_deposit - user_challenge_deposit;
-		
-		// 유저가 보유한 상금
-		int user_reward = dao.user_reward(userid);
-		
-		// 유저가 전환한 상금
-		int user_convert = dao.user_convert(userid);
-		
-		// 유저가 현재 보유하고 있는 총 상금
-		int user_all_reward = user_reward - user_convert;
-		
-		
-		jsonObj.addProperty("user_all_deposit", user_all_deposit);
-		
-		jsonObj.addProperty("user_all_reward", user_all_reward);
-		
-		jsonArr.add(jsonObj);
-		*/	
 		return jsonObj.toString();
 	}
 
@@ -788,36 +660,6 @@ public class MypageService implements InterMypageService {
 			List<Map<String, String>> certify_list = dao.mypage_certify_challenge(paraMap);
 			
 			// System.out.println("certify_list" + certify_list);
-			/*
-			if(mypage_challenging_list.size() > 0 && certify_list.size() > 0) {
-				// 인증한 챌린지 번호는 mypage_challenging_list에서 삭제해준다.
-				for(int i=0; i<mypage_challenging_list.size(); i++) {
-					
-					for(int j=0; j<certify_list.size(); j++) {
-						
-						Map<String, String> map_cha = mypage_challenging_list.get(i);
-						
-						String cha_challenge_code = map_cha.get("fk_challenge_code");
-						
-						Map<String, String> map_cer = certify_list.get(j);
-						
-						String cer_challenge_code = map_cer.get("fk_challenge_code");
-						
-						if(cha_challenge_code.equals(cer_challenge_code)) {
-							
-							System.out.println("cha_challenge_code " + cha_challenge_code);
-							
-							System.out.println("cer_challenge_code " + cer_challenge_code);
-							
-							mypage_challenging_list.remove(i);
-							
-						}
-						
-					}
-					
-				}
-			}
-			*/
 			
 			if (mypage_challenging_list.size() > 0 && certify_list.size() > 0) {
 			    List<Map<String, String>> removeList = new ArrayList<>();
@@ -1013,6 +855,7 @@ public class MypageService implements InterMypageService {
 		dao.modifyPw(udto);
 	}
 
+	// 마이페이지 홈에서 이미지 불러오기
 	@Override
 	public String image(String userid) {
 
