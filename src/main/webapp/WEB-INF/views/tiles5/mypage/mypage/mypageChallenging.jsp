@@ -207,7 +207,7 @@
 			dataType:"json",
 			success:function(json){
 				
-				console.log(JSON.stringify(json));
+				// console.log(JSON.stringify(json));
 				
 				// 참가중인 챌린지
 				let ing_cnt = 0; 
@@ -240,7 +240,7 @@
 				
 				for(var i=0; i<json.length; i++) {
 					
-					if( "${requestScope.userid}" == json[i].fk_userid) {    // 로그인기능 만들어지면 로그인한 상대로 변경해주기
+					if( "${requestScope.userid}" == json[i].fk_userid) {   
 						fk_cnt++;
 					}
 					
@@ -694,15 +694,14 @@
 								if(resultToday > json[i].finish_day) {
 									// 끝난 챌린지
 									html += "<table class='col-lg-6 table_margin'>"
-										 +  "	<tr>"
+										 +	"	<tr>"
 										 +  "		<td class='td_width_36'>"
 										 +  "			<img class='img-fluid px-3 px-sm-4 mt-3 mb-4 cha_img' src='<%=ctxPath%>/images/" + json[i].thumbnail + "' alt='챌린지이미지'>"
 										 +  "		</td>"
 										 +	"		<td>"
-										 +	"			<div class='div_title'>" + json[i].challenge_name + "</div>"
-										 +	" 			<div class='div_info'>참여기간: " + json[i].startdate + "~" + json[i].finish_day + "</div>"
-										 +	" 			<div class='div_info'>시작일: " + json[i].startdate + "</div>"
-										 +	" 			<div class='div_info'>개설자: " + json[i].fk_userid + "</div>"
+										 +	"			<div class='div_title'>" + json[i].challenge_name + " 챌린지</div>"
+										 +	" 			<div class='div_info'>참여기간: " + json[i].startdate + " ~ " + json[i].finish_day + "</div>"
+										 +	" 			<div class='div_info'>달성률: " + json[i].achievement_pct + "%</div>"
 										 +  " 		</td>"
 										 +	"		<td class='td_width_22'>"
 										 +	"			<div class='go_button' onclick='go_lounge();'>후기쓰러가기</div>"
