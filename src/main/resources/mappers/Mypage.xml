@@ -375,15 +375,16 @@
 	
 	<!-- 관심태그 알아오기 -->
 	<resultMap type="HashMap" id="mypage_recommend_map">
-		<result property="thumbnail" 	  column="thumbnail" 	  javaType="String" />
 		<result property="challenge_name" column="challenge_name" javaType="String" />
+		<result property="challenge_code" column="challenge_code" javaType="String" />
+		<result property="thumbnail" 	  column="thumbnail" 	  javaType="String" />
 		<result property="regDate" 	  	  column="regDate" 	      javaType="String" />
 		<result property="startdate" 	  column="startdate" 	  javaType="String" />
 		<result property="member_count"   column="member_count"   javaType="String" />
 		<result property="fk_userid" 	  column="fk_userid" 	  javaType="String" />
 	</resultMap>
 	<select id="recommend" parameterType="HashMap" resultMap="mypage_recommend_map">
-		select C.challenge_name, thumbnail, C.member_count, C.fk_userid,
+		select C.challenge_name, C.challenge_code, thumbnail, C.member_count, C.fk_userid,
 			   to_char(C.regDate, 'yyyy-mm-dd') AS regDate, 
 			   to_char(C.startdate, 'yyyy-mm-dd') AS startdate
 		from tbl_interest I join tbl_category T
@@ -415,13 +416,15 @@
 	
 	<!-- 회원정보 수정하기 -->
 	<update id="mypage_info_edit" parameterType="HashMap">
-		update tbl_user set profile_pic=#{profilePic},
-							mobile=#{mobile}
+		update tbl_user set mobile=#{mobile}
 							<if test="acct != null">
 								,acct=#{acct}
 							</if>
 							<if test="email != null">
 								,email=#{email}
+							</if>
+							<if test="profilePic != null">
+								,profile_pic=#{profilePic}
 							</if>
 		where userid=#{userid}
 	</update>
