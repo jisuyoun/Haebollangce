@@ -62,9 +62,6 @@ public interface InterMypageService {
 	// 찜한 챌린지 불러오기
 	String like_challenge(String userid);
 
-	// 찜한 라운지 불러오기
-	String like_lounge(String userid);
-	
 	// 진행중인 챌린지 페이지 정보 가지고오기
 	String mypage_challenging(Map<String, String> paraMap);
 	
@@ -105,6 +102,7 @@ public interface InterMypageService {
 	// 비밀번호 변경하기
 	void modifyPw(UserDTO udto);
 
+	// 마이페이지 홈에서 이미지 불러오기
 	String image(String userid);
 
 
