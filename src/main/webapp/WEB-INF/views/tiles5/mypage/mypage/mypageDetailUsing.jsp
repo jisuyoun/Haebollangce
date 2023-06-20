@@ -455,7 +455,7 @@
 			type:"get",
 			dataType:"json",
 			success:function(json){
-				console.log(JSON.stringify(json));
+				// console.log(JSON.stringify(json));
 				
 				if(json.total_page > 0) {
 					
@@ -537,7 +537,7 @@
 		<input type="hidden" id="userid" value="${requestScope.userid}" />
 		<input type="hidden" id="sort" value="${requestScope.sort}" />
 		
-		<h3 class="font_weight">결제 사용현황</h3>
+		<h3 class="font_weight">예치금·상금 사용내역</h3>
 		
 		<div class="col-lg-12 checks">
 			<input type="radio" class="sort_value" name="sort_value" value="1" id="radio_1" />
