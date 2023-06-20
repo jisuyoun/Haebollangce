@@ -156,6 +156,10 @@
 		overflow: auto;
 	}
 	
+	form.form_margin {
+		margin-top: 7%;
+	}
+	
 	td.td_padding {
 		padding: 30% 33%;
 	}
@@ -430,7 +434,7 @@
 				
 				for(var i=0; i<json.length; i++) {
 					
-					convert_arr.push(Number(json[i].convert));
+					convert_arr.push(Number(json[i].convert_reward));
 					
 				} 
 				
@@ -447,7 +451,7 @@
 				Highcharts.chart('chart_reward', {
 
 				    title: {
-				        text: '1년 동안 충전·사용한 예치금',
+				        text: '1년 동안 획득·환전한 상금',
 				        align: 'left'
 				    },
 				
@@ -565,7 +569,7 @@
 							if(json.length >= 7 && cnt == 7) {
 								html += "<tr>"
 									 +	"	<td class='td_style' colspan='2'>"
-									 +	"		<form name='detail_form'>"
+									 +	"		<form name='detail_form' class='form_margin'>"
 									 +	"			<input type='hidden' name='userid' value='${requestScope.userid}' />"
 									 +	"			<input type='hidden' name='sort' value='1' />"
 									 +	"			<button class='add_button' onclick='go_detail();'>더보기</button>"
@@ -621,7 +625,7 @@
 							if(json.length >= 5 && cnt == 5) {
 								html += "<tr>"
 									 +	"	<td class='td_style' colspan='2'>"
-									 +	"		<form name='detail_form'>"
+									 +	"		<form name='detail_form' class='form_margin'>"
 									 +	"			<input type='hidden' name='userid' value='${requestScope.userid}' />"
 									 +	"			<input type='hidden' name='sort' value='2' />"
 									 +	"			<button class='add_button' onclick='go_detail();'>더보기</button>"
@@ -666,7 +670,7 @@
 							if(json.length >= 5 && cnt == 5) {
 								html += "<tr>"
 									 +	"	<td class='td_style' colspan='2'>"
-									 +	"		<form name='detail_form'>"
+									 +	"		<form name='detail_form' class='form_margin'>"
 									 +	"			<input type='hidden' name='userid' value='${requestScope.userid}' />"
 									 +	"			<input type='hidden' name='sort' value='3' />"
 									 +	"			<button class='add_button' onclick='go_detail();'>더보기</button>"
@@ -712,7 +716,7 @@
 								
 								html += "<tr>"
 									 +	"	<td class='td_style' colspan='2'>"
-									 +	"		<form name='detail_form'>"
+									 +	"		<form name='detail_form' class='form_margin'>"
 									 +	"			<input type='hidden' name='userid' value='${requestScope.userid}' />"
 									 +	"			<input type='hidden' name='sort' value='4' />"
 									 +	"			<button class='add_button' onclick='go_detail();'>더보기</button>"
@@ -803,15 +807,14 @@
 								}
 								
 								html += "<tr>"
-									 +  "	<td class='cancel_td'>"+json[i].purchase_date+"</td>";
+									 +  "	<td class='cancel_td'>"+json[i].purchase_date+"</td>"
+									 +	" 	<td class='cancel_td' rowspan='2'>"
+									 +  "		<button type='button' class='go_button' onclick='purchase_cancel("+json[i].purchase_code+");'>취소하기</button>"
+									 +  "	</td>";
 										
-								html += "	<td class='cancel_td'></td>"
-									 +	"</tr>"
+								html += "</tr>"
 									 +  "<tr>"
 									 +	"	<td class='cancel_td blue_font'>결제금액: " + purchase_price + " 원</td>"
-									 +	" 	<td class='cancel_td'>"
-									 +  "		<button type='button' class='go_button' onclick='purchase_cancel("+json[i].purchase_code+");'>취소하기</button>"
-									 +  "	</td>"
 									 +	"</tr>";
 								 
 										 
@@ -963,7 +966,7 @@
 									</td>
 									<td class="tag_sort">현재 보유 상금</td>
 									<td rowspan="2" class="td_width_19">
-										<button type="button" class="go_button" onClick="location.href='<%=ctxPath%>/mypage/change_reward'">환전하러 가기</button>
+										<button type="button" class="go_button" onClick="location.href='<%=ctxPath%>/mypage/changeReward'">환전하러 가기</button>
 									</td>
 								</tr>
 								<tr>
@@ -1005,7 +1008,7 @@
 									<td id="tag_sort_1" class="tag_sort" onclick="tag_sort(1)">예치금결제·취소</td>
 									<td id="tag_sort_2" class="tag_sort" onclick="tag_sort(2)">챌린지참가</td>
 									<td id="tag_sort_3" class="tag_sort" onclick="tag_sort(3)">상금획득내역</td>
-									<td id="tag_sort_4" class="tag_sort" onclick="tag_sort(4)">상금출금</td>
+									<td id="tag_sort_4" class="tag_sort" onclick="tag_sort(4)">상금환전</td>
 								</tr>
 							</table>
 							<input type="hidden" id="sort" name="sort" />
