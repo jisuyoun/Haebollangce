@@ -394,26 +394,13 @@ public class MypageDAO implements InterMypageDAO {
 		
 	}
 
+	// 마이페이지 홈에서 이미지 불러오기
 	@Override
 	public String image(String userid) {
+		
 		String jsonobj = mapper.image(userid);
 		
 		return jsonobj;
-	}
-
-	
-	@Override
-	public int user_deposit(String userid) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<Map<String, Object>> selectList(Map<String, Object> paramMap) {
-		
-		List<Map<String, Object>> result = mapper.selectList(paramMap);
-		
-		return result;
 	}
 
 	
