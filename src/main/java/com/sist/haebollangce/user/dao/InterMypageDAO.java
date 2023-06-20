@@ -19,9 +19,6 @@ public interface InterMypageDAO {
 	// 상금 전환 테이블에 전환된 내용 넣기
 	int reward_convert(Map<String, String> paraMap);
 
-	// 사용자가 보유하고 있는 예치금 알아오기
-	// int user_deposit(String userid);
-	
 	// 유저가 보유한 상금
 	int user_reward(String userid);
 	
@@ -117,20 +114,20 @@ public interface InterMypageDAO {
 	List<Map<String, String>> chart_challenging(Map<String, String> paraMap);
 	List<Map<String, String>> chart_category(Map<String, String> paraMap);
 
+	// 보유중인 예치금 가지고오기
 	int user_deposit(Map<String, String> paraMap);
 
+	// 보유중인 상금 가지고오기
 	RewardDTO all_reward(Map<String, String> paraMap);
 
 	// 유저 보유 예치금
 	DepositDTO depo_dto(Map<String, String> paraMap);
 
+	// 비밀번호 변경하기
 	void modifyPw(UserDTO udto);
 
+	// 마이페이지 홈에서 이미지 불러오기
 	String image(String userid);
-
-	int user_deposit(String userid);
-
-	List<Map<String, Object>> selectList(Map<String, Object> paramMap);
 
 	
 }
