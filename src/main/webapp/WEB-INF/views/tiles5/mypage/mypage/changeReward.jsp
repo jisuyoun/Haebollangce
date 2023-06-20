@@ -94,14 +94,14 @@
 		font-weight: bold;
 		margin-bottom: 25px;
 		border-bottom: solid 1px #aaa;
-		text-align: center;
+		text-align: right;
 	}
 	
 	td#get_reward {
 		font-size: 15pt;
 		font-weight: bold;
 		height: 60px;
-		text-align: center;
+		text-align: right;
 		color: red;
 	}
 
@@ -179,8 +179,6 @@
 		
 		$("td#get_reward").html("0원");
 		
-		$("td#change_reward").html("0원");
-		
 		$("td#td_input_reward").html("0원");
 		
 		$("div.error").hide();
@@ -196,19 +194,17 @@
 				
 				$("input#reward_input").val($(this).val());
 				
-				$("td#td_input_reward").html($(this).val() + "원");
+				$("td#td_input_reward").html($(this).val() + " 원");
 				
 				//const final_get_reward = $(this).val() - ($(this).val()*0.01);
 				
 				const final_get_reward = Math.ceil( ($(this).val() - ($(this).val()*0.01)) / 10 ) * 10;
 				
-				$("td#get_reward").html( final_get_reward + "원");
+				$("td#get_reward").html( final_get_reward + " 원");
 				
-				const change_user_reward = Number($("input#reward").val()) + Number($(this).val());
+				$("td#change_reward").html("0 원");
 				
-				$("td#change_reward").html(change_user_reward + "원");
-				
-				$(this).css("border-bottom","solid #aaaaaa 1px");
+				$("input#reward_input").css("border-bottom","solid #aaaaaa 1px");
 				
 				success_flag = true; 
 				
@@ -224,7 +220,7 @@
 				
 				$("td#td_input_reward").html("0 원");
 				
-				$("td#change_reward").html("0 원");
+				$("td#change_reward").html($(this).val());
 				
 				$("input#reward_input").val("");
 				
@@ -265,7 +261,7 @@
 					
 					$("td#td_input_reward").html("0 원");
 					
-					$("td#change_reward").html("0 원");
+					$("td#change_reward").html($("button#all_use").val() + " 원");
 					
 					$("input#reward_input").val("");
 					
@@ -287,7 +283,7 @@
 						
 						$("td#td_input_reward").html("0 원");
 						
-						$("td#change_reward").html("0 원");
+						$("td#change_reward").html($("button#all_use").val() + " 원");
 						
 						$(this).css("border-bottom","solid red 2px");	
 						
@@ -326,7 +322,7 @@
 				
 				$("td#td_input_reward").html("0 원");
 				
-				$("td#change_reward").html("0 원");
+				$("td#change_reward").html($("button#all_use").val() + " 원");
 				
 				$("td#get_reward").html("0 원");
 				
@@ -443,7 +439,7 @@
 		<div class="col-lg-12 mb-4 body_style">
 			<div id="notice" class="card shadow mb-4">
 				<%-- 상금 입력 시작 --%>
-				<div class="card-body" style="padding:7rem 12rem;">
+				<div class="card-body" style="padding:7rem 12rem 4rem 12rem;">
 					<input type="text" id="reward_input" class="offset-lg-2 col-lg-8 offset-lg-2" required>
 					<label id="reward_label">환전할 상금(원)</label>
 					<div id="error_max" class="error">현재 가지고 있는 상금보다 더 큰 금액은 입력하지 못합니다.</div>
