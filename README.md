@@ -30,4 +30,9 @@
 2. Git
 3. SQLdeveloper
 
+## 개발 기간
+2023.5.12 ~ 2023.6.16 (5주)
+
+## ERD
 ![Relational_1](https://github.com/jisuyoun/Haebollangce/assets/122525676/fddddc80-325f-4fff-b8c6-9518e632db90)
+
