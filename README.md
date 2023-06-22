@@ -1,5 +1,8 @@
 # Heabollangce
 
+detail:
+[Haebollangce 마이페이지.pdf](https://github.com/jisuyoun/Haebollangce/files/11832911/Haebollangce.pdf)
+
 ## 프로젝트 소개 
 
 회원 및 관리자가 만든 챌린지에 참여하기 위해 미리 결제한 예치금을 사용하거나 챌린지 참여 시 바로 결제하여 챌린지에 참여할 수 있다.
@@ -13,7 +16,7 @@
 2. javascript & jQuery
 3. ORACLE SQL/PLSQL
 
-### wEB Frontend
+### WEB Frontend
 1. HTML
 2. CSS
 3. Jquery
@@ -35,4 +38,5 @@
 
 ## ERD
 ![Relational_1](https://github.com/jisuyoun/Haebollangce/assets/122525676/fddddc80-325f-4fff-b8c6-9518e632db90)
+
 
