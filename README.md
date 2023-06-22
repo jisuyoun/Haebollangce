@@ -1,7 +1,7 @@
 # Heabollangce
 
 detail:
-[Haebollangce 마이페이지.pdf](https://github.com/jisuyoun/Haebollangce/files/11832911/Haebollangce.pdf)
+[Heabollangce mypage readme.pdf](https://github.com/jisuyoun/Haebollangce/files/11832935/Heabollangce.mypage.readme.pdf)
 * pdf 에는 직접 만든 마이페이지에 대한 내용만 담겨있습니다.
 
 ## 프로젝트 소개 
