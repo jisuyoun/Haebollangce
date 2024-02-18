@@ -1,5 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=soft&color=FF0000&section=header&height=200&text=Heabollangce&fontColor=fff)
 
+[Haebollangce ppt](<../../Desktop/취준/00. 파이널/Haebollangce.pdf>)
 
 미리 결제한 포인트 또는 참여 시 결제한 포인트를 활용하여 챌린지에 참여할 수 있습니다. 챌린지 달성률에 따라 포인트를 반환받을 수 있으며, 100% 달성 시 추가적인 상금 포인트를 수령하여 챌린지에 참여한 참가자들이 좋은 습관을 형성할 수 있도록 돕는데 주력하는 서비스입니다.
 
