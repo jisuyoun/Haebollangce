@@ -23,7 +23,7 @@
 </div>
 <br>
 <div align=center>
-	<p>🛠 Tools 🛠</p>
+	<h5>🛠 Tools 🛠</h5>
 </div>
 <div align=center>
 	<img src="https://img.shields.io/badge/Spring Tool Suite%20IDE-6DB33F?style=flat&logo=springboot&logoColor=white" />
@@ -47,8 +47,10 @@
     <h3>✍️ Introduce ✍️</h3>
 </div>
 <details>
-    <summary>🏠 마이페이지 홈 🏠</summary>
+    <summary>🏠 마이페이지 홈</summary>
+<br>
 JSP 파일명: mypageHome   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/360e09c5-bdf2-403a-83cb-22670fb66963)
 
@@ -62,7 +64,7 @@ JSP 파일명: mypageHome
 </details>
 <br>
 <details>
-    <summary>🗃️ 챌린지 현황 🗃️</summary>
+    <summary>🗃️ 챌린지 현황</summary>
 JSP 파일명: mypageChallenging   
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/e1b7672b-2440-45dc-a34e-3f5c750d47b5)
@@ -75,7 +77,7 @@ JSP 파일명: mypageChallenging
 </details>
 <br>
 <details>
-    <summary>💱 예치금 충전 및 상금 환전 💱</summary>
+    <summary>💱 예치금 충전 및 상금 환전</summary>
 
 🔸 예치금 충전   
 JSP 파일명: depositPurchase   
@@ -101,7 +103,7 @@ JSP 파일명: changeReward
 </details>
 <br>
 <details>
-    <summary>📊 결제, 상금 현황📊</summary>
+    <summary>📊 결제, 상금 현황</summary>
 
 JSP 파일명: mypageUsing   
 
@@ -115,7 +117,7 @@ JSP 파일명: mypageUsing
 </details>
 <br>
 <details>
-    <summary>📊 예치금, 상금 현황 📊</summary>
+    <summary>📊 예치금, 상금 현황</summary>
 JSP 파일명: mypageDetailUsing   
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/42661f5f-1f34-4503-aeda-8fa4803698ee)
@@ -124,7 +126,7 @@ JSP 파일명: mypageDetailUsing
 </details>
 <br>
 <details>
-    <summary>👍 찜한 챌린지 👍</summary>
+    <summary>👍 찜한 챌린지</summary>
 JSP 파일명: mypageChallengeLike   
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/1ff984ec-5e51-4743-a792-ac1ef928ecbf)
@@ -133,7 +135,7 @@ JSP 파일명: mypageChallengeLike
 </details>
 <br>
 <details>
-    <summary>🔒 비밀번호 확인 🔒</summary>
+    <summary>🔒 비밀번호 확인</summary>
 JSP 파일명: mypagePwdIdentify   
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/5b04727a-58dc-45b1-a585-4e1f5290d862)
@@ -142,7 +144,7 @@ JSP 파일명: mypagePwdIdentify
 </details>
 <br>
 <details>
-    <summary>🔓 개인정보 수정 🔓</summary>
+    <summary>🔓 개인정보 수정</summary>
 JSP 파일명: mypageInfoEdit   
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/0e81672e-73d7-4786-b483-415a0bf01065)
@@ -155,7 +157,7 @@ JSP 파일명: mypageInfoEdit
 </details>
 <br>
 <details>
-    <summary>❌ 회원탈퇴하기 ❌</summary>
+    <summary>❌ 회원탈퇴하기</summary>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/44783f16-dcd8-44a9-8b35-f91be9d137a5)
 </details>
