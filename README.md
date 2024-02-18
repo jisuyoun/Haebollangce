@@ -5,7 +5,7 @@
 
 <div>
     <h3 align="center">📚 Tech Stack 📚</h3>
-    <h5 align="center">✨ Platforms & Languages ✨</h5>
+    <h4 align="center">✨ Platforms & Languages ✨</h4>
 </div>
 <div align="center">
 	<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Conda-Forge&logoColor=white" />
@@ -23,7 +23,7 @@
 </div>
 <br>
 <div align=center>
-	<h5>🛠 Tools 🛠</h5>
+	<h4>🛠 Tools 🛠</h4>
 </div>
 <div align=center>
 	<img src="https://img.shields.io/badge/Spring Tool Suite%20IDE-6DB33F?style=flat&logo=springboot&logoColor=white" />
@@ -33,7 +33,7 @@
 <br>
 <div align=center>
     <h3>🗓️ develop period 🗓️</h3>
-    <h5>2023.5.12 ~ 2023.6.16 (5주)</h5>
+    <h4>2023.5.12 ~ 2023.6.16 (5주)</h4>
 </div>
 <br>
 <div align=center>
@@ -65,7 +65,9 @@ JSP 파일명: mypageHome
 <br>
 <details>
     <summary>🗃️ 챌린지 현황</summary>
+<br>
 JSP 파일명: mypageChallenging   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/e1b7672b-2440-45dc-a34e-3f5c750d47b5)
 
@@ -78,9 +80,10 @@ JSP 파일명: mypageChallenging
 <br>
 <details>
     <summary>💱 예치금 충전 및 상금 환전</summary>
-
+<br>
 🔸 예치금 충전   
 JSP 파일명: depositPurchase   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/02a22e24-f84b-41dd-bcce-f7dfe9703938)
 
@@ -88,8 +91,10 @@ JSP 파일명: depositPurchase
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/d93e7fba-4319-450a-84a4-1b95fb6ea689)
 
+<br>
 🔸 상금 환전   
 JSP 파일명: changeReward
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/613f317a-887b-4c3c-a08b-22e060d57ac0)
 
@@ -104,8 +109,9 @@ JSP 파일명: changeReward
 <br>
 <details>
     <summary>📊 결제, 상금 현황</summary>
-
+<br>
 JSP 파일명: mypageUsing   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/7155db3f-f30d-454b-9568-d74cdd599563)
 
@@ -118,7 +124,9 @@ JSP 파일명: mypageUsing
 <br>
 <details>
     <summary>📊 예치금, 상금 현황</summary>
+<br>
 JSP 파일명: mypageDetailUsing   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/42661f5f-1f34-4503-aeda-8fa4803698ee)
 
@@ -127,7 +135,9 @@ JSP 파일명: mypageDetailUsing
 <br>
 <details>
     <summary>👍 찜한 챌린지</summary>
+<br>
 JSP 파일명: mypageChallengeLike   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/1ff984ec-5e51-4743-a792-ac1ef928ecbf)
 
@@ -136,7 +146,9 @@ JSP 파일명: mypageChallengeLike
 <br>
 <details>
     <summary>🔒 비밀번호 확인</summary>
+<br>
 JSP 파일명: mypagePwdIdentify   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/5b04727a-58dc-45b1-a585-4e1f5290d862)
 
@@ -145,7 +157,9 @@ JSP 파일명: mypagePwdIdentify
 <br>
 <details>
     <summary>🔓 개인정보 수정</summary>
+<br>
 JSP 파일명: mypageInfoEdit   
+<br>
 
 ![image](https://github.com/jisuyoun/Haebollangce/assets/122525676/0e81672e-73d7-4786-b483-415a0bf01065)
 
