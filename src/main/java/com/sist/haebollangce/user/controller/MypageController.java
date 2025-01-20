@@ -1013,7 +1013,7 @@ public class MypageController {
 		
 		String userid = request.getParameter("userid");
 		 
-		String json = service.like_lounge(userid);
+		String json = service.like_challenge(userid);
 		
 		return json;
 	}
